@@ -1,5 +1,8 @@
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // Configure Cloudinary
 cloudinary.config({ 
@@ -21,9 +24,21 @@ const uploadOnCloudinary = async (localFilePath) => {
     fs.unlinkSync(localFilePath)
     return response
   } catch (error) {
+    console.error('Error uploading file to Cloudinary:', error)
     fs.unlinkSync(localFilePath)
     return null
   }
 }
 
-export { uploadOnCloudinary }
+const deleteFromCloudinary = async (publicId) => {
+  try {
+    const result = await cloudinary.uploader.destroy(publicId)
+    console.log("🚀 ~ deleteFromCloudinary. PublicId", publicId)
+    
+  } catch (error) {
+    console.log('Error deleting file from Cloudinary:', error)
+    return null
+  }
+}
+
+export { uploadOnCloudinary, deleteFromCloudinary }
