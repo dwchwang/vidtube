@@ -4,6 +4,7 @@ import { User } from "../models/user.models.js"
 import { uploadOnCloudinary, deleteFromCloudinary  } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
+import mongoose from "mongoose"
 
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -376,7 +377,7 @@ const getUserChannelProfile = asyncHandler( async(req, res) => {
           from: "subscriptions",
           localField: "_id",
           foreignField: "channel",
-          as: "subcribers"
+          as: "subscribers" 
         }
       },
       {
@@ -384,13 +385,13 @@ const getUserChannelProfile = asyncHandler( async(req, res) => {
           from: "subscriptions",
           localField: "_id",
           foreignField: "subscriber",
-          as: "subscriberedTo"
+          as: "subscribedTo"
         }
       },
       {
         $addFields: {
           subscribersCount: {
-            $size: "$subcribers"
+            $size: "$subscribers"
           },
           channelSubscribedToCount: {
             $size: "$subscribedTo"
