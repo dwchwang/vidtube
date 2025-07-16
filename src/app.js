@@ -23,6 +23,7 @@ import subcriptionRouter from './routes/subscription.routes.js'
 import videoRouter from './routes/video.routes.js'
 import commentRouter from "./routes/comment.routes.js"
 import likeRouter from "./routes/like.routes.js"
+import tweetRouter from "./routes/tweet.routes.js"
 
 // routes
 app.use("/api/v1/healthcheck", healthcheckRouter)
@@ -31,5 +32,6 @@ app.use("/api/v1/subscriptions", subcriptionRouter)
 app.use("/api/v1/videos", videoRouter)
 app.use("/api/v1/comments", commentRouter)
 app.use("/api/v1/likes", likeRouter)
+app.use("/api/v1/tweets", tweetRouter)
 
 export { app }
