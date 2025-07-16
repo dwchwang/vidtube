@@ -19,10 +19,6 @@ const playlistSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User"
-    },
-    description:{
-      type: String,
-      required: true,
     }
   },
   { timestamps: true}
